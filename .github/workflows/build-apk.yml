@@ -1,7 +1,7 @@
 name: Build Android APK
 
 on:
-  workflow_dispatch: # 수동 실행 트리거
+  workflow_dispatch:
 
 jobs:
   build:
@@ -17,11 +17,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Grant Execute Permission for Gradlew
-        run: chmod +x gradlew
+        run: chmod +x gradlew || true
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
